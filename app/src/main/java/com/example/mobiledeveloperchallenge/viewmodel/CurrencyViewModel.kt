@@ -1,39 +1,32 @@
 package com.example.mobiledeveloperchallenge.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.mobiledeveloperchallenge.model.Currencies
-import com.example.mobiledeveloperchallenge.model.CurrencyQuote
 import com.example.mobiledeveloperchallenge.model.CurrencyApiService
+import com.example.mobiledeveloperchallenge.model.CurrencyQuote
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class CurrencyViewModel : ViewModel() {
+class CurrencyViewModel(application: Application) : AndroidViewModel(application) {
 
-    val apiService = CurrencyApiService()
+    val apiService = CurrencyApiService(application.applicationContext)
     val disposable = CompositeDisposable()
     val currency = MutableLiveData<CurrencyQuote>()
     val currencies = MutableLiveData<Currencies>()
     val loadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-    fun refresh() {
-        fetchFromRemote()
-    }
-
-    fun getDefaultCurrencies(){
-        getCurrencies()
-    }
-
-    fun getCurrencies(){
+    fun getDefaultCurrencies() {
         loading.value = true
         disposable.add(
             apiService.getCurrencies()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<Currencies>(){
+                .subscribeWith(object : DisposableSingleObserver<Currencies>() {
                     override fun onSuccess(t: Currencies) {
                         currencies.value = t
                         loadError.value = false
@@ -50,7 +43,7 @@ class CurrencyViewModel : ViewModel() {
         )
     }
 
-    private fun fetchFromRemote() {
+    fun refresh() {
         loading.value = true
         disposable.add(
             apiService.getCurrencyRates()

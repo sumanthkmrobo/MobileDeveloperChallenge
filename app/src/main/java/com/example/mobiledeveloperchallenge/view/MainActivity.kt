@@ -3,20 +3,15 @@ package com.example.mobiledeveloperchallenge.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mobiledeveloperchallenge.R
-import com.example.mobiledeveloperchallenge.model.CurrencyQuote
 import com.example.mobiledeveloperchallenge.model.Quote
 import com.example.mobiledeveloperchallenge.viewmodel.CurrencyViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -103,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                 countryCodes
             ) as SpinnerAdapter
             currenciesSpinner.adapter = adapter
+
             viewModel.refresh()
         })
         viewModel.loading.observe(this, Observer { isLoading ->
