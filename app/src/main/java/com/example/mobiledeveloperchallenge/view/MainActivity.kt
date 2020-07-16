@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.mobiledeveloperchallenge.R
-import com.example.mobiledeveloperchallenge.model.Quote
+import com.example.mobiledeveloperchallenge.model.data.Quote
 import com.example.mobiledeveloperchallenge.viewmodel.CurrencyViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Double.parseDouble
@@ -26,20 +26,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         viewModel = ViewModelProviders.of(this).get(CurrencyViewModel::class.java)
-
         currencyRecyclerView.apply {
             currencyRatesAdapter = CurrencyRatesAdapter(context)
             adapter = currencyRatesAdapter
             layoutManager = GridLayoutManager(context, 3)
         }
-
         viewModel.getDefaultCurrencies()
-
         observeCurrencies()
         observeCurrency()
-
         currencyEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
                 if (editable!!.length > 0) {
@@ -57,21 +52,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         })
 
-
         currenciesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -98,7 +86,6 @@ class MainActivity : AppCompatActivity() {
                 countryCodes
             ) as SpinnerAdapter
             currenciesSpinner.adapter = adapter
-
             viewModel.refresh()
         })
         viewModel.loading.observe(this, Observer { isLoading ->

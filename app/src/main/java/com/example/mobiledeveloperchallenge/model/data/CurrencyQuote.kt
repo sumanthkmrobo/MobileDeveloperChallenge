@@ -1,4 +1,4 @@
-package com.example.mobiledeveloperchallenge.model
+package com.example.mobiledeveloperchallenge.model.data
 
 data class CurrencyQuote(
     var success: Boolean,

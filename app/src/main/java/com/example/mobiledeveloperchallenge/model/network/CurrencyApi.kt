@@ -1,5 +1,7 @@
-package com.example.mobiledeveloperchallenge.model
+package com.example.mobiledeveloperchallenge.model.network
 
+import com.example.mobiledeveloperchallenge.model.data.Currencies
+import com.example.mobiledeveloperchallenge.model.data.CurrencyQuote
 import io.reactivex.Single
 import retrofit2.http.GET
 

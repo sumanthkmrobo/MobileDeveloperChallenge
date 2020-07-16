@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobiledeveloperchallenge.R
-import com.example.mobiledeveloperchallenge.model.Quote
+import com.example.mobiledeveloperchallenge.model.data.Quote
 import kotlinx.android.synthetic.main.currency_rate_item.view.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -30,7 +30,6 @@ class CurrencyRatesAdapter(var context: Context) :
         val rate = ratesArray.get(position)
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING
-
         if (rate.updatedPrice == 0.0) {
             holder.itemView.currencyRate.text = df.format(rate.usdprice).toString()
         } else {
