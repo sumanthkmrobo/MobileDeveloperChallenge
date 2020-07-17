@@ -5,19 +5,19 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.mobiledeveloperchallenge.model.data.Currencies
 import com.example.mobiledeveloperchallenge.model.network.CurrencyApiService
-import com.example.mobiledeveloperchallenge.model.data.CurrencyQuote
+import com.example.mobiledeveloperchallenge.model.data.CurrencyRate
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 class CurrencyViewModel(application: Application) : AndroidViewModel(application) {
-    val apiService =
+    private val apiService =
         CurrencyApiService(
             application.applicationContext
         )
-    val disposable = CompositeDisposable()
-    val currency = MutableLiveData<CurrencyQuote>()
+    private val disposable = CompositeDisposable()
+    val currency = MutableLiveData<CurrencyRate>()
     val currencies = MutableLiveData<Currencies>()
     val loadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
@@ -49,8 +49,8 @@ class CurrencyViewModel(application: Application) : AndroidViewModel(application
             apiService.getCurrencyRates()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<CurrencyQuote>() {
-                    override fun onSuccess(t: CurrencyQuote) {
+                .subscribeWith(object : DisposableSingleObserver<CurrencyRate>() {
+                    override fun onSuccess(t: CurrencyRate) {
                         currency.value = t
                         loadError.value = false
                         loading.value = false

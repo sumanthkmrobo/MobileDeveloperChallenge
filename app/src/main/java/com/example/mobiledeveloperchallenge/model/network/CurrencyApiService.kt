@@ -2,7 +2,7 @@ package com.example.mobiledeveloperchallenge.model.network
 
 import android.content.Context
 import com.example.mobiledeveloperchallenge.model.data.Currencies
-import com.example.mobiledeveloperchallenge.model.data.CurrencyQuote
+import com.example.mobiledeveloperchallenge.model.data.CurrencyRate
 import io.reactivex.Single
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -11,7 +11,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CurrencyApiService(var context: Context) {
-    private val BASE_URL = "http://api.currencylayer.com/"
+    private val BASEURL = "http://api.currencylayer.com/"
     private val myCache = Cache(context.cacheDir, (10 * 1024 * 1024).toLong())
 
     private fun loadApi(duration: Long): CurrencyApi {
@@ -29,7 +29,7 @@ class CurrencyApiService(var context: Context) {
             }
             .build()
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BASEURL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
@@ -38,7 +38,7 @@ class CurrencyApiService(var context: Context) {
 
     }
 
-    fun getCurrencyRates(): Single<CurrencyQuote> {
+    fun getCurrencyRates(): Single<CurrencyRate> {
         return loadApi(30).getCurrencyRates()
     }
 

@@ -28,12 +28,12 @@ class CurrencyRatesAdapter(var context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val rate = ratesArray.get(position)
-        val df = DecimalFormat("#.##")
-        df.roundingMode = RoundingMode.CEILING
+        val decimalFormat = DecimalFormat("#.##")
+        decimalFormat.roundingMode = RoundingMode.CEILING
         if (rate.updatedPrice == 0.0) {
-            holder.itemView.currencyRate.text = df.format(rate.usdprice).toString()
+            holder.itemView.currencyRate.text = decimalFormat.format(rate.usdprice).toString()
         } else {
-            holder.itemView.currencyRate.text = df.format(rate.updatedPrice).toString()
+            holder.itemView.currencyRate.text = decimalFormat.format(rate.updatedPrice).toString()
         }
         holder.itemView.currencyCountry.text = rate.country
     }

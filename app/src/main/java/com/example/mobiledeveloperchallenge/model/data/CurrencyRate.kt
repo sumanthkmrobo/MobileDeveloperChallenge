@@ -1,8 +1,6 @@
 package com.example.mobiledeveloperchallenge.model.data
 
-data class CurrencyQuote(
-    var success: Boolean,
-    var timestamp: Long,
+data class CurrencyRate(
     var source: String,
     var quotes: Map<String, Double>
 )

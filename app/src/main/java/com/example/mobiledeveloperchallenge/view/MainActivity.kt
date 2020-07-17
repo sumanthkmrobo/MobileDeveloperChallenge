@@ -18,10 +18,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Double.parseDouble
 
 class MainActivity : AppCompatActivity() {
-    lateinit var viewModel: CurrencyViewModel
-    lateinit var countryCodes: Array<String>
+    private lateinit var viewModel: CurrencyViewModel
+    private lateinit var countryCodes: Array<String>
     var currencyQuotes = ArrayList<Quote>()
-    var currentPosition: Int = 0
     lateinit var currencyRatesAdapter: CurrencyRatesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
