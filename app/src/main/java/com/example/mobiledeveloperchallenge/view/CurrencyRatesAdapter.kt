@@ -49,6 +49,10 @@ class CurrencyRatesAdapter(var context: Context) :
                 reference = 1 / quote.usdprice
             }
         }
+        updatePricing(num)
+    }
+
+    fun updatePricing(num:Double){
         ratesArray.forEach { quote ->
             quote.updatedPrice = quote.usdprice * num * reference
         }

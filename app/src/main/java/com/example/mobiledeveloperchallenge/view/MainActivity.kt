@@ -40,11 +40,7 @@ class MainActivity : AppCompatActivity() {
                     val number: String = editable.toString()
                     try {
                         val num = parseDouble(number)
-                        currencyQuotes.forEach { quote ->
-                            quote.updatedPrice =
-                                quote.usdprice * num * currencyRatesAdapter.reference
-                        }
-                        currencyRatesAdapter.notifyDataSetChanged()
+                        currencyRatesAdapter.updatePricing(num)
                     } catch (e: NumberFormatException) {
                         e.printStackTrace()
                     }
