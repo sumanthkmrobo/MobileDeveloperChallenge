@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rate_item_top_padding">16dp</dimen>
+    <dimen name="rate_item_horizontal_padding">8dp</dimen>
+    <dimen name="rate_item_vertical_padding">16dp</dimen>
+    <dimen name="rate_item_margin">2dp</dimen>
+    <dimen name="main_layout_margin">20dp</dimen>
+    <dimen name="loading_screen_progress">100dp</dimen>
+    <dimen name="loading_rates_progress">70dp</dimen>
+    <dimen name="spinner_padding">20dp</dimen>
+    <dimen name="spinner_minwidth">100dp</dimen>
+    <dimen name="spinner_dropdown_width">100dp</dimen>
+    <dimen name="spinner_margin_top">10dp</dimen>
+    <dimen name="edit_text_padding">12dp</dimen>
+    <dimen name="edit_text_margin">40dp</dimen>
+    <dimen name="drid_border_radius">4dp</dimen>
+    <dimen name="grid_border_width">1dp</dimen>
+</resources>

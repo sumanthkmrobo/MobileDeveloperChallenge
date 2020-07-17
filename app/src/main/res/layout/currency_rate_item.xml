@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:gravity="center"
+    android:layout_margin="@dimen/rate_item_margin"
     android:background="@drawable/grid_border"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/rate_item_horizontal_padding"
+    android:paddingTop="@dimen/rate_item_vertical_padding"
+    android:paddingRight="@dimen/rate_item_horizontal_padding"
+    android:paddingBottom="@dimen/rate_item_vertical_padding">
 
     <TextView
         android:id="@+id/currencyRate"
-        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/currencyCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currencyRate" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

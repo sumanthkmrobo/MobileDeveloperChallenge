@@ -10,8 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class CurrencyApiService(var context: Context) {
-    private val BASEURL = "http://api.currencylayer.com/"
+class CurrencyApiService(context: Context) {
+    private val url = "http://api.currencylayer.com/"
     private val myCache = Cache(context.cacheDir, (10 * 1024 * 1024).toLong())
 
     private fun loadApi(duration: Long): CurrencyApi {
@@ -29,7 +29,7 @@ class CurrencyApiService(var context: Context) {
             }
             .build()
         return Retrofit.Builder()
-            .baseUrl(BASEURL)
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)

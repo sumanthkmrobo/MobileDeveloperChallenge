@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.currency_rate_item.view.*
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class CurrencyRatesAdapter(var context: Context) :
+class CurrencyRatesAdapter(private var context: Context) :
     RecyclerView.Adapter<CurrencyRatesAdapter.ViewHolder>() {
-    var ratesArray: ArrayList<Quote> = ArrayList()
-    var reference: Double = 1.0
+    private var ratesArray: ArrayList<Quote> = ArrayList()
+    private var reference: Double = 1.0
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -27,13 +27,13 @@ class CurrencyRatesAdapter(var context: Context) :
     override fun getItemCount(): Int = ratesArray.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val rate = ratesArray.get(position)
+        val rate = ratesArray[position]
         val decimalFormat = DecimalFormat("#.##")
         decimalFormat.roundingMode = RoundingMode.CEILING
-        if (rate.updatedPrice == 0.0) {
-            holder.itemView.currencyRate.text = decimalFormat.format(rate.usdprice).toString()
+        holder.itemView.currencyRate.text = if (rate.updatedPrice == 0.0) {
+            decimalFormat.format(rate.usd_price).toString()
         } else {
-            holder.itemView.currencyRate.text = decimalFormat.format(rate.updatedPrice).toString()
+            decimalFormat.format(rate.updatedPrice).toString()
         }
         holder.itemView.currencyCountry.text = rate.country
     }
@@ -45,16 +45,16 @@ class CurrencyRatesAdapter(var context: Context) :
 
     fun updateReference(selectedItem: String, num: Double) {
         ratesArray.forEach { quote ->
-            if (quote.country.equals(selectedItem)) {
-                reference = 1 / quote.usdprice
+            if (quote.country == selectedItem) {
+                reference = 1 / quote.usd_price
             }
         }
         updatePricing(num)
     }
 
-    fun updatePricing(num:Double){
+    fun updatePricing(num: Double) {
         ratesArray.forEach { quote ->
-            quote.updatedPrice = quote.usdprice * num * reference
+            quote.updatedPrice = quote.usd_price * num * reference
         }
         notifyDataSetChanged()
     }

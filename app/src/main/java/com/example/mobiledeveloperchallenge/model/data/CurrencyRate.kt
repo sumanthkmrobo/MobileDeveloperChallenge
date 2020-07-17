@@ -7,6 +7,6 @@ data class CurrencyRate(
 
 data class Quote(
     var country: String,
-    var usdprice: Double,
+    var usd_price: Double,
     var updatedPrice: Double = 0.0
 )

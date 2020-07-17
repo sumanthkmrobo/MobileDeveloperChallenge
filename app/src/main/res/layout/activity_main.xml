@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="@dimen/main_layout_margin"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,16 +20,15 @@
             android:id="@+id/currencyEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/edit_text_margin"
             android:background="@drawable/grid_border"
             android:ems="10"
             android:gravity="end"
             android:inputType="numberDecimal"
-            android:padding="12dp"
-            android:text="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:padding="@dimen/edit_text_padding"
+            android:hint="@string/edit_text_hint"
+            android:text="@string/default_number"
+            android:importantForAutofill="no">
 
             <requestFocus />
         </EditText>
@@ -40,25 +38,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:dropDownWidth="100dp"
-            android:minWidth="100dp"
-            android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currencyEditText" />
+            android:layout_marginTop="@dimen/spinner_margin_top"
+            android:dropDownWidth="@dimen/spinner_dropdown_width"
+            android:minWidth="@dimen/spinner_minwidth"
+            android:padding="@dimen/spinner_padding"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/currencyRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currenciesSpinner" />
+            android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/loadingRates"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/loading_rates_progress"
+            android:layout_height="@dimen/loading_rates_progress"
             android:layout_gravity="center"
             android:visibility="gone" />
 
@@ -67,15 +61,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Error While loading rates"
+            android:text="@string/error_loading_rates"
             android:visibility="gone" />
 
     </LinearLayout>
 
     <ProgressBar
         android:id="@+id/loadingScreen"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/loading_screen_progress"
+        android:layout_height="@dimen/loading_screen_progress"
         android:layout_gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Error While loading Screen data"
+        android:text="@string/error_loading_screen_data"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

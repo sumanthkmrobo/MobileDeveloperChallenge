@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Mobile Developer Challenge</string>
+    <string name="default_number">1</string>
+    <string name="error_loading_rates">Error While loading rates</string>
+    <string name="error_loading_screen_data">Error While loading Screen data</string>
+    <string name="edit_text_hint">Please enter an amount</string>
 </resources>

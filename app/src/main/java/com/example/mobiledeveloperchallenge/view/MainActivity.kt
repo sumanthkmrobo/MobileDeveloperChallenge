@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         observeCurrency()
         currencyEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
-                if (editable!!.length > 0) {
-                    val number: String = editable.toString()
+                val number: String = editable!!.toString()
+                if (number.isNotEmpty()) {
                     try {
                         val num = parseDouble(number)
                         currencyRatesAdapter.updatePricing(num)
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             ) {
                 if (currencyQuotes.size != 0) {
                     currencyRatesAdapter.updateReference(
-                        currencyQuotes.get(position).country,
+                        currencyQuotes[position].country,
                         parseDouble(currencyEditText.text.toString())
                     )
                 }
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeCurrency() {
         viewModel.currency.observe(this, Observer { currencyData ->
-            currencyQuotes = ArrayList<Quote>()
+            currencyQuotes = ArrayList()
             for (key in currencyData.quotes.keys) {
                 var currency = key
                 if (currency.length > 3) {
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                 currencyQuotes.add(
                     Quote(
                         currency,
-                        currencyData.quotes.get(key)!!
+                        currencyData.quotes[key] ?: error(1.0)
                     )
                 )
             }
